@@ -9,6 +9,7 @@ import { Login } from './components/login/login';
 import { authGuard } from './core/guards/auth.guard';
 import { guestGuard } from './core/guards/guest.guard';
 import { UpdatePassword } from './components/update-password/update-password';
+import { Informe } from './components/informe/informe';
 
 export const routes: Routes = [
 
@@ -21,6 +22,8 @@ export const routes: Routes = [
   { path: 'actualizar', component: UpdatePassword, canActivate: [authGuard] },
 
   { path: 'habitos', component: Habito, canActivate: [authGuard] },
+    { path: 'informe', component: Informe, canActivate: [authGuard] },
+
   { path: 'login', component: Login, canActivate: [guestGuard] },
 
   { path: '', redirectTo: 'recordatorios', pathMatch: 'full' }

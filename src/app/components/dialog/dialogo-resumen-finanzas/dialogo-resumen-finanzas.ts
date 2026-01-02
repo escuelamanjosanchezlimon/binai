@@ -42,8 +42,8 @@ export class DialogoResumenFinanzas implements OnInit {
 
         this.totalIngresosMes.set(totales.total_ingreso);
         this.totalGastosMes.set(totales.total_gasto);
-        this.totalDeudasMes.set(totales.total_deuda);
-        this.totalPrestamosMes.set(totales.total_prestamo);
+        this.totalDeudasMes.set(totales.suma_total_deudas);
+        this.totalPrestamosMes.set(totales.suma_total_prestamos);
       },
       error: err => console.error('Error al obtener totales', err)
     });
