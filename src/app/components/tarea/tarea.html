@@ -1,0 +1,72 @@
+<div class="titulo-container">
+  <h2>Control de Tareas</h2>
+</div>
+
+<div class="button-add-container">
+  <button mat-button class="button-add" (click)="mostrarTarea(null, 'agregar')">
+    <mat-icon>add</mat-icon>
+    Agregar tarea
+  </button>
+</div>
+
+<div class="lista-container">
+  <mat-chip-listbox aria-label="Selección">
+    <mat-chip-option (click)="filtrarPorEstado('PENDIENTE')" class="chip-filtro">
+      Pendientes
+    </mat-chip-option>
+    <mat-chip-option (click)="filtrarTareasDeHoy()" class="chip-filtro"> Hoy </mat-chip-option>
+    <mat-chip-option (click)="filtrarPorPrioridad(1)" class="chip-filtro"> Alta </mat-chip-option>
+    <mat-chip-option (click)="filtrarPorPrioridad(2)" class="chip-filtro"> Media </mat-chip-option>
+    <mat-chip-option (click)="filtrarPorPrioridad(3)" class="chip-filtro"> Baja </mat-chip-option>
+    <mat-chip-option (click)="filtrarPorEstado('COMPLETADA', 10)" class="chip-filtro">
+      Completada (10)
+    </mat-chip-option>
+    <mat-chip-option (click)="filtrarPorEstado('VENCIDO')" class="chip-filtro">
+      Vencidos
+    </mat-chip-option>
+  </mat-chip-listbox>
+
+  <mat-list>
+    @if (tareas$ | async; as tareas) { @for (tarea of tareas; track tarea.id) {
+
+    <mat-list-item lines="10" class="tarea-item">
+      <div style="display: flex; flex-direction: column; gap: 0">
+        <span matListItemTitle class="titulo">
+          {{ tarea.titulo }}
+        </span>
+
+        <span class="descripcion">Descripción: {{ tarea.descripcion }}</span>
+        <span class="tipo">Tipo: {{ getTipo(tarea.tipo) }}</span>
+        <span class="expiracion">Expiración: {{ getFechaExpiracion(tarea.expiracion) }}</span>
+      </div>
+
+      <span class="meta">
+        <mat-chip-set>
+          <mat-chip
+            [ngClass]="{
+              'chip-completada': tarea.estado === 'COMPLETADA',
+              'chip-pendiente': tarea.estado !== 'COMPLETADA'
+            }"
+            [highlighted]="tarea.estado === 'COMPLETADA'"
+            [disabled]="tarea._loading"
+            (click)="cambiarEstado(tarea)"
+          >
+            @if (!tarea._loading) {
+            {{ tarea.estado }}
+            } @else {
+            <mat-progress-spinner diameter="14" mode="indeterminate"> </mat-progress-spinner>
+            }
+          </mat-chip>
+
+          <mat-chip (click)="mostrarTarea(tarea, 'mostrar')" class="chip-mas"> Ver más </mat-chip>
+          <mat-chip (click)="eliminar(tarea)" class="chip-eliminar"> X </mat-chip>
+        </mat-chip-set>
+      </span>
+    </mat-list-item>
+
+    <mat-divider />
+    } }
+  </mat-list>
+      <div style="display: flex; justify-content: flex-end;"><span>Tareas: {{ (tareas$ | async)?.length }}</span></div>
+
+</div>

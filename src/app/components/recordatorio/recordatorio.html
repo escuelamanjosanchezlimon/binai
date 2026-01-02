@@ -1,0 +1,93 @@
+<div class="titulo-container">
+  <h2>Recordatorios</h2>
+</div>
+
+<div class="button-add-container">
+  <button class="button-add" mat-button (click)="mostrarRecordatorio(null, 'agregar')">
+    <mat-icon>add</mat-icon>
+    Agregar recordatorio
+  </button>
+</div>
+
+<div class="tabla-container">
+  <mat-chip-listbox aria-label="Selección">
+    <mat-chip-option  (click)="cargarTabla()">
+      Todos
+    </mat-chip-option>
+
+    <mat-chip-option (click)="filtrarTablaPorRecordatoriosEstaSemana()" >
+      Esta semana
+    </mat-chip-option>
+
+    <mat-chip-option (click)="filtrarTablaPorRecordatoriosHoyEn15()" >
+      hoy - 15 días
+    </mat-chip-option>
+  <mat-chip-option (click)="filtrarTablaPorRecordatoriosHoyEn30()" >
+      hoy - 30 días
+    </mat-chip-option>
+
+    <mat-chip-option (click)="filtrarTablaPorRecordatoriosTipo('CUMPLEAÑOS')" >
+      Cumpleaños
+    </mat-chip-option>
+
+      <mat-chip-option (click)="filtrarTablaPorRecordatoriosTipo('EVENTOS')" >
+      Eventos
+    </mat-chip-option>
+      <mat-chip-option (click)="filtrarTablaRecordatoriosArchivados()" >
+      Archivados
+    </mat-chip-option>
+  </mat-chip-listbox>
+
+  <table mat-table [dataSource]="dataSource" class="tabla-recordatorios">
+    <!-- Position Column -->
+    <ng-container matColumnDef="tiempoRestante">
+      <th mat-header-cell *matHeaderCellDef>Tiempo límite</th>
+      <td mat-cell *matCellDef="let element">{{ element.tiempoRestante }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="titulo">
+      <th mat-header-cell *matHeaderCellDef>Titulo</th>
+      <td mat-cell *matCellDef="let element">{{ element.titulo }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="descripcion">
+      <th mat-header-cell *matHeaderCellDef>Descripción</th>
+      <td mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="tipo">
+      <th mat-header-cell *matHeaderCellDef>Tipo</th>
+
+      <td mat-cell *matCellDef="let element" style="overflow-wrap: anywhere">
+        @if (element.tipo === 'CUMPLEAÑOS') { <mat-icon>cake</mat-icon> } @else {
+        {{ element.tipo }}
+        }
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="mostrarRecordatorio(row, 'mostrar')"
+      [ngClass]="{
+        'fila-eventos': row.tipo === 'EVENTOS',
+        'fila-trabajo': row.tipo === 'TRABAJO',
+        'fila-hogar': row.tipo === 'HOGAR',
+        'fila-cumpleanos': row.tipo === 'CUMPLEAÑOS',
+        'fila-entretenimiento': row.tipo === 'ENTRETENIMIENTO'
+      }"
+    ></tr>
+  </table>
+
+  <mat-paginator
+    [pageSize]="30"
+    [pageSizeOptions]="[5, 10, 20, 30]"
+    showFirstLastButtons
+    aria-label="Select page of periodic elements"
+  >
+  </mat-paginator>
+</div>

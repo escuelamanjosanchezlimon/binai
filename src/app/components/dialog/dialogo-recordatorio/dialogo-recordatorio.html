@@ -1,0 +1,150 @@
+<h2 mat-dialog-title>Recordatorio</h2>
+
+<mat-dialog-content [formGroup]="form">
+  @if(data?.modo ==='mostrar'){
+<div class="reiniciar" (click)="establecerReinicio()">Reiniciar</div>
+  } @if(form.get('titulo')?.hasError('required')) {
+  <mat-error> El título es obligatorio </mat-error>
+
+  } @if(form.get('titulo')?.hasError('maxlength')) {
+  <mat-error> El texto debe ser de 0 a 300 caractéres </mat-error>
+  }
+
+  <mat-form-field class="full-width">
+    <mat-label>Titulo</mat-label>
+    <input matInput placeholder="Hacer algo..." formControlName="titulo" />
+  </mat-form-field>
+
+  @if(form.get('descripcion')?.hasError('required')) {
+  <mat-error> La descripción es obligatorio </mat-error>
+
+  } @if(form.get('descripcion')?.hasError('maxlength')) {
+  <mat-error> La descripción debe ser de 0 a 500 caractéres </mat-error>
+  }
+
+  <mat-form-field class="full-width">
+    <mat-label>Descripción</mat-label>
+    <input matInput placeholder="Se debe hacer así..." formControlName="descripcion" />
+  </mat-form-field>
+
+  @if(form.get('estado')?.hasError('required') || form.get('tipo')?.hasError('required')) {
+  <mat-error> Seleccione el tipo y el estado </mat-error>
+
+  }
+  <div class="form-row">
+    <mat-form-field>
+      <mat-label>Tipo</mat-label>
+      <mat-select formControlName="tipo">
+        @for (tipo of tipos; track tipo) {
+        <mat-option [value]="tipo.valor">
+          {{ tipo.tipo }}
+        </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Estado</mat-label>
+      <mat-select formControlName="estado">
+        @for (estado of estados; track estado) {
+        <mat-option [value]="estado.valor">
+          {{ estado.estado }}
+        </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+  @if ( form.get('fechaLimite')?.invalid && form.get('fechaLimite')?.touched ) {
+  <mat-error>Fecha inválida</mat-error>
+  }
+
+  <div class="form-row">
+    <mat-form-field>
+      <mat-label>Fecha límite (dd/MM/yyyy)</mat-label>
+      <input readonly matInput [matDatepicker]="picker" formControlName="fechaLimite" />
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  @if ( form.get('horaLimite')?.invalid && form.get('horaLimite')?.touched ) {
+  <mat-error>Hora inválida</mat-error>
+  }
+
+  <div class="form-row">
+    <mat-form-field>
+      <mat-label>Hora límite</mat-label>
+
+      <input matInput [matTimepicker]="timePickerRef" formControlName="horaLimite" />
+
+      <mat-timepicker-toggle matIconSuffix [for]="timePickerRef" />
+
+      <mat-timepicker #timePickerRef />
+    </mat-form-field>
+  </div>
+
+  @if ( ( form.get('repetirCada')?.hasError('required') && form.get('repetirCada')?.touched ) || (
+  form.get('unidad')?.hasError('required') && form.get('unidad')?.touched ) ) {
+  <mat-error>Campos obligatorios</mat-error>
+  }
+    @if (form.get('repetirCada')?.hasError('min')) {
+      <mat-error>No puede ser negativo</mat-error>
+      } @if (form.get('repetirCada')?.hasError('pattern')) {
+      <mat-error>Solo se permiten números enteros en los días.</mat-error>
+      }
+
+  <div class="form-row">
+    <mat-form-field>
+      <mat-label>Unidad</mat-label>
+      <mat-select formControlName="unidad">
+        @for (unidad of unidadades; track unidad) {
+        <mat-option [value]="unidad.valor">
+          {{ unidad.unidad }}
+        </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+  
+      <mat-label>Repetir cada (días)</mat-label>
+
+      <input
+        matInput
+        type="number"
+        min="0"
+        placeholder="cantidad de días..."
+        formControlName="repetirCada"
+      />
+    </mat-form-field>
+  </div>
+
+  @if(data?.modo ==='mostrar'){
+
+  <div class="form-row">
+    <mat-form-field>
+      <mat-label>Ultimo cambio</mat-label>
+      <input
+        matInput
+        type="datetime-local"
+        formControlName="fechaCambio"
+        readonly
+      />
+    </mat-form-field>
+  </div>
+  } @if (nuevaFechaLimite) {
+  <div>Próxima fecha límite: {{ nuevaFechaLimite }}</div>
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  @if(data?.modo ==='mostrar'){
+  <button matButton class="btn-eliminar" (click)="eliminar()">
+    <mat-icon>delete</mat-icon>Eliminar
+  </button>
+  }
+  <button [disabled]="form.invalid" matButton class="btn-aceptar" (click)="guardar()">
+    Aceptar
+  </button>
+  <button matButton mat-dialog-close class="btn-cerrar">Cerrar</button>
+</mat-dialog-actions>

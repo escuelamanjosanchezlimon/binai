@@ -1,0 +1,115 @@
+td,
+th {
+  font-family: 'Figtree', Arial, Tahoma, sans-serif;
+  font-size: 15px !important;
+}
+
+th {
+  font-weight: bold !important;
+}
+
+tr:hover td {
+  background-color: rgb(40, 195, 84);
+  color: white;
+}
+
+.tabla-container {
+  width: 100%;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* --- PANTALLAS GRANDES --- */
+@media (min-width: 768px) {
+  .tabla-container {
+    overflow-x: hidden; /* No scroll horizontal */
+  }
+
+  .tabla-recordatorios {
+    width: 100%;
+    min-width: unset !important;
+    table-layout: auto; /* columnas se expanden */
+  }
+}
+
+.titulo-container {
+  text-align: center;
+  font-size: 25px;
+}
+
+.button-add-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button-add {
+  background-color: rgb(62, 109, 0);
+  color: white !important;
+  margin-bottom: 10px;
+  font-family: var(--font-primary);
+}
+
+/* Colores según tipo */
+.mat-mdc-row.fila-eventos {
+  background-color: #d7ffe5 !important; /* Rosado pastel */
+}
+
+.mat-mdc-row.fila-trabajo {
+  background-color: #e3f2fd !important; /* Azul pastel */
+}
+
+.mat-mdc-row.fila-hogar {
+  background-color: #fff2cb !important; /* Amarillo pastel */
+}
+
+.mat-mdc-row.fila-cumpleanos {
+  background-color: #ffe9f2 !important; /* Rosa claro */
+}
+
+.mat-mdc-row.fila-entretenimiento {
+  background-color: #e0d2ff !important; /* Lila pastel */
+}
+
+/* Hover filas */
+.mat-mdc-row:hover {
+  filter: brightness(0.95);
+  cursor: pointer;
+}
+
+/* --- PANTALLAS PEQUEÑAS (CELULAR) --- */
+@media (max-width: 767px) {
+  .tabla-recordatorios {
+    table-layout: fixed; /* clave para que el contenido respete la celda */
+    width: 100%;
+  }
+
+  .tabla-recordatorios td,
+  .tabla-recordatorios th {
+    padding: 5px;
+    font-size: 13px;
+  }
+
+  .tabla-recordatorios td > div {
+    display: block;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+}
+
+/* Pantallas muy pequeñas */
+@media (max-width: 344px) {
+  .tabla-recordatorios td,
+  .tabla-recordatorios th {
+    padding: 2px;
+    font-size: 12px !important;
+  }
+
+  .tabla-recordatorios td > div {
+    font-size: 12px;
+  }
+}

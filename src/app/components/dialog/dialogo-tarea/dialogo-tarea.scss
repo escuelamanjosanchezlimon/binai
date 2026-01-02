@@ -1,0 +1,56 @@
+.full-width {
+  width: 100%;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.form-row mat-form-field {
+  flex: 1; 
+}
+
+::ng-deep .mat-mdc-form-field .mat-mdc-floating-label {
+  color: #ffffff !important; // color azul
+  font-size: 14px; // tamaño
+  font-family: Arial, Helvetica, sans-serif;
+  background: rgb(3, 73, 3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-aceptar {
+  background-color: green;
+  color: beige !important;
+}
+
+.btn-cerrar {
+  color: rgb(30, 20, 143);
+}
+
+.btn-eliminar {
+  background-color: rgb(128, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+h2 {
+  margin: 0;
+  font-family: 'Figtree', Arial, Tahoma, sans-serif;
+  text-align: center;
+  font-weight: 600 !important;
+}
+
+.chip-small mat-chip {
+  height: 14px;
+  min-height: 22px;
+  font-size: 11px;
+  padding: 0 8px;
+  line-height: 22px;
+  
+}
+
+.chip-small mat-chip .mat-mdc-chip-action-label {
+  padding: 0;
+}

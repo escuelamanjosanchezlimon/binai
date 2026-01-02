@@ -1,0 +1,61 @@
+<h2 mat-dialog-title class="dialog-title">Resumen</h2>
+
+<mat-dialog-content class="dialog-content">
+  <div class="grid-container">
+    <div class="grid-item">
+      <h3>Ingresos (mes)</h3>
+      <p class="amount-large">₡{{ totalIngresosMes() }}</p>
+
+      <span class="amount">₡{{ saldoRestante() }}</span>
+
+      <span
+        [ngClass]="{
+          rojo: calcularPorcentaje(saldoRestante(), totalIngresosMes()) <= 30,
+          verde: calcularPorcentaje(saldoRestante(), totalIngresosMes()) > 30
+        }"
+      >
+        ({{ calcularPorcentaje(saldoRestante(), totalIngresosMes()) }}%)
+      </span>
+      <span>/30%</span>
+      <p>
+        Se recomienda ahorrar solo: <b> ₡{{ totalIngresosMes() * 0.3 }}.</b>
+      </p>
+    </div>
+
+    <div class="grid-item">
+      <h3>Gastos (mes)</h3>
+      <p class="amount-large">₡{{ gastoTotal() }}</p>
+      <p>
+        <span
+          [ngClass]="{
+            verde: calcularPorcentaje(gastoTotal(), totalIngresosMes()) <= 70,
+            rojo: calcularPorcentaje(gastoTotal(), totalIngresosMes()) > 70
+          }"
+        >
+          ({{ calcularPorcentaje(gastoTotal(), totalIngresosMes()) }}%)
+        </span>
+        <span>/70%</span>
+      </p>
+       <p>
+        Se recomienda gastar menos de: <b> ₡{{ totalIngresosMes() * 0.7 }}.</b>
+      </p>
+    </div>
+
+    <div class="grid-item">
+      <h3>Deudas (*)</h3>
+      <p class="amount-large">₡{{ totalDeudasMes() }}</p>
+    </div>
+
+    <div class="grid-item">
+      <h3>Préstamos (*)</h3>
+      <p class="amount-large">₡{{ totalPrestamosMes() }}</p>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="dialog-actions">
+  <button class="cancel-button" mat-button (click)="cancelar()">Cancelar</button>
+  <button class="confirm-button" mat-raised-button color="primary" (click)="confirmar()">
+    Confirmar
+  </button>
+</mat-dialog-actions>

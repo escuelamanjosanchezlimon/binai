@@ -1,0 +1,87 @@
+.dialog-title {
+  font-weight: 700;
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.grid-item {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.grid-item:hover {
+  transform: translateY(-3px);
+}
+
+.grid-item h3 {
+  margin-bottom: 12px;
+  font-size: 18px;
+  color: #333;
+}
+
+.amount-large {
+  font-weight: bold;
+  font-size: 20px;
+  color: #037a19;
+  margin-bottom: 8px;
+}
+
+.grid-item p {
+  margin: 6px 0;
+  font-size: 16px;
+}
+
+.amount {
+  font-weight: bold;
+}
+
+.dialog-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cancel-button {
+  color: #555;
+}
+
+.confirm-button {
+  background-color: #318600;
+  color: white;
+}
+
+.verde {
+  color: rgb(70, 180, 70);
+  font-weight: bold;
+}
+
+.rojo {
+  color: rgb(255, 70, 70);
+  font-weight: bold;
+}
+
+
+
+/* Responsivo: apilar en móviles */
+@media (max-width: 600px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-item {
+    text-align: left;
+  }
+}

@@ -1,0 +1,56 @@
+<div class="login-container">
+  <mat-card>
+    <span class="nombre-app">BinAI</span>
+    <h2>Iniciar sesión</h2>
+
+    <form [formGroup]="form">
+      @if ( form.get('email')?.invalid && (form.get('email')?.touched || form.get('email')?.dirty) )
+      { @if (form.get('email')?.hasError('required')) {
+      <mat-error> El correo es obligatorio </mat-error>
+      } @if (form.get('email')?.hasError('email')) {
+      <mat-error> El correo no es válido </mat-error>
+      } }
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+
+      @if (form.get('password')?.hasError('required')) {
+      <mat-error> La contraseña es obligatoria </mat-error>
+      }
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" />
+
+        <button
+          style="margin-right: 10px"
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="hide = !hide"
+          aria-label="Mostrar u ocultar contraseña"
+        >
+          <mat-icon>
+            {{ hide ? 'visibility' : 'visibility_off' }}
+          </mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
+
+    <div (click)="establecerUsuario()" class="centrado boton-link">
+      <span>Establecer usuario</span>
+    </div>
+
+    <button
+      mat-raised-button
+      class="full-width"
+      (click)="login()"
+      [disabled]="loading()"
+      style="background-color: forestgreen; color: white"
+    >
+      {{ loading() ? 'Ingresando...' : 'Ingresar' }}
+    </button>
+  </mat-card>
+</div>

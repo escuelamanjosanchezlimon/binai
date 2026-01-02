@@ -1,0 +1,118 @@
+.lista-container {
+  width: 100%;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  padding-top: 0px !important;
+  margin-top: 0px !important;
+  box-sizing: border-box;
+}
+.titulo-container {
+  text-align: center;
+  font-size: 25px;
+}
+
+mat-list-item {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+mat-list {
+  padding-top: 0;
+}
+
+/* === Angular Material overrides === */
+::ng-deep .mat-mdc-list-option {
+  height: auto !important;
+  align-items: flex-start !important;
+}
+
+::ng-deep .mat-mdc-list-item__content {
+  overflow: visible !important;
+  padding: 12px 10px !important;
+}
+
+.chip-filtro {
+  margin-top: 12px !important;
+}
+.titulo {
+  font-weight: 600;
+  font-size: 15px;
+  font-family: 'Figtree', Arial, Tahoma, sans-serif;
+}
+
+.descripcion,
+.tipo,
+.expiracion {
+  display: block;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2; /* Ajusta la altura de línea */
+  font-size: 13px;
+  font-family: 'Figtree', Arial, Tahoma, sans-serif;
+}
+.descripcion {
+  white-space: pre-line;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+/* === Chips Material === */
+::ng-deep mat-chip-set {
+  margin-bottom: 5px;
+  display: flex;
+  gap: 6px;
+}
+
+::ng-deep mat-chip {
+  font-size: 11px;
+}
+
+.button-add-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button-add {
+  background-color: rgb(62, 109, 0);
+  color: white !important;
+  margin-bottom: 10px;
+  font-family: var(--font-primary);
+}
+
+.chip-completada {
+  background-color: #1da021 !important; /* verde */
+  color: white !important;
+}
+
+.chip-pendiente {
+  background-color: #ff9800 !important; /* naranja */
+  color: white !important;
+}
+/* Usamos una mayor especificidad para ganar a los estilos por defecto */
+
+/* Apuntamos directamente al texto del chip */
+.chip-eliminar ::ng-deep .mdc-evolution-chip__text-label {
+  color: rgb(221, 11, 11) !important;
+}
+
+.chip-mas ::ng-deep .mdc-evolution-chip__text-label {
+  font-family: 'Figtree', Arial, Tahoma, sans-serif;
+}
+
+.chip-pendiente ::ng-deep .mdc-evolution-chip__text-label,
+.chip-completada ::ng-deep .mdc-evolution-chip__text-label {
+  color: white !important;
+  font-family: 'Figtree', Arial, Tahoma, sans-serif;
+}
+/* === Responsive === */
+@media (min-width: 768px) {
+  .lista-container {
+    overflow-x: hidden;
+  }
+}

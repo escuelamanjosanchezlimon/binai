@@ -1,0 +1,76 @@
+.nombre-app {
+  font-family: 'Satisfy', Arial, monospace;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar {
+  background-color: rgb(4, 122, 39);
+  color: white;
+}
+
+.toolbar-icon {
+  color: white;
+}
+
+.container {
+  height: calc(100vh - 64px);
+  background-color: rgb(250, 250, 250);
+}
+
+.content {
+  height: 80%;
+  padding: 16px;
+}
+
+.sidenav {
+  width: 200px;
+  padding-top: 10px;
+}
+
+::ng-deep .mat-mdc-list-item,
+::ng-deep .mdc-list-item__primary-text {
+  font-family: var(--font-primary) !important;
+}
+
+.sidenav a[mat-list-item] {
+  white-space: nowrap !important;
+}
+
+.sidenav a[mat-list-item] .mat-list-item-content {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+}
+
+.sidenav a[mat-list-item] mat-icon {
+  display: inline-flex !important;
+  vertical-align: middle !important;
+}
+
+.sidenav a[mat-list-item] span {
+  padding-left: 10px !important;
+}
+
+#menu-icon {
+  font-size: 30px;
+  bottom: 3px;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: rgb(255, 255, 255);
+  //  background-color: rgb(34, 40, 35);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}

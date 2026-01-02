@@ -1,0 +1,106 @@
+<h2 mat-dialog-title>Tarea</h2>
+
+<mat-dialog-content [formGroup]="form">
+  @if(form.get('titulo')?.hasError('required')) {
+  <mat-error> El título es obligatorio </mat-error>
+
+  } @if(form.get('titulo')?.hasError('maxlength')) {
+  <mat-error> El texto debe ser de 0 a 300 caractéres </mat-error>
+  }
+
+  <mat-form-field class="full-width">
+    <mat-label>Titulo</mat-label>
+    <input matInput placeholder="Hacer algo..." formControlName="titulo" />
+  </mat-form-field>
+
+  @if(form.get('descripcion')?.hasError('required')) {
+  <mat-error> La descripción es obligatorio </mat-error>
+
+  } @if(form.get('descripcion')?.hasError('maxlength')) {
+  <mat-error> La descripción debe ser de 0 a 500 caractéres </mat-error>
+  }
+
+  <mat-form-field class="full-width">
+    <mat-label>Descripción</mat-label>
+    <input matInput placeholder="Se debe hacer así..." formControlName="descripcion" />
+  </mat-form-field>
+
+  <div class="form-row">
+    <mat-form-field>
+      <mat-label>Estado</mat-label>
+      <mat-select formControlName="estado">
+        @for (estado of estados; track estado) {
+        <mat-option [value]="estado.valor">
+          {{ estado.estado }}
+        </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field>
+      <mat-label>Tipo</mat-label>
+      <mat-select formControlName="tipo">
+        @for (tipo of tipos; track tipo) {
+        <mat-option [value]="tipo.valor">
+          {{ tipo.tipo }}
+        </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Prioridad</mat-label>
+      <mat-select formControlName="prioridad">
+        @for (prioridad of prioridades; track prioridad) {
+        <mat-option [value]="prioridad.valor">
+          {{ prioridad.prioridad }}
+        </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  @if (form.get('cantidad')?.hasError('required')) {
+  <mat-error>La cantidad es obligatoria</mat-error>
+  } @if (form.get('cantidad')?.hasError('min')) {
+  <mat-error>No se permiten números negativos</mat-error>
+  } @if (form.get('cantidad')?.hasError('max')) {
+  <mat-error>No puede tener más de 4 dígitos</mat-error>
+  } @if (form.get('unidad')?.hasError('required')) {
+  <mat-error>Debe seleccionar una unidad</mat-error>
+  } @if (form.get('unidad')?.hasError('min')) {
+  <mat-error>Seleccione una unidad válida</mat-error>
+  }
+
+  <div class="form-row">
+    <mat-form-field>
+      <mat-label>Unidad</mat-label>
+      <mat-select formControlName="unidad">
+        @for (unidad of unidades; track unidad) {
+        <mat-option [value]="unidad.valor">
+          {{ unidad.unidad }}
+        </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Cantidad</mat-label>
+      <input
+        matInput
+        type="number"
+        placeholder="Cantidad de tiempo..."
+        formControlName="cantidad"
+      />
+    </mat-form-field>
+  </div>
+  <div>Expiración: {{ fechaLimite }}</div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button [disabled]="form.invalid" matButton class="btn-aceptar" (click)="guardar()">
+    Aceptar
+  </button>
+  <button matButton mat-dialog-close class="btn-cerrar">Cerrar</button>
+</mat-dialog-actions>

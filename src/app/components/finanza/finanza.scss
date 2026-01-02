@@ -1,0 +1,160 @@
+td,
+th {
+  font-family: 'Figtree', Arial, Tahoma, sans-serif;
+  font-size: 15px !important;
+}
+
+th {
+  font-weight: bold !important;
+}
+
+tr:hover td {
+  background-color: rgb(40, 195, 84);
+  color: white;
+}
+
+.tabla-container {
+  width: 100%;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+::ng-deep .mat-mdc-form-field .mat-mdc-floating-label {
+  color: #ffffff !important; // color azul
+  font-size: 14px; // tamaño
+  font-family: Arial, Helvetica, sans-serif;
+  background: rgb(3, 73, 3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* --- PANTALLAS GRANDES --- */
+@media (min-width: 768px) {
+  .tabla-container {
+    overflow-x: hidden; /* No scroll horizontal */
+  }
+
+  .tabla-finanzas {
+    width: 100%;
+    min-width: unset !important;
+    table-layout: auto; /* columnas se expanden */
+  }
+}
+
+.titulo-container {
+  text-align: center;
+  font-size: 25px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button-add {
+  background-color: rgb(62, 109, 0);
+  color: white !important;
+  margin-bottom: 10px;
+  font-family: var(--font-primary);
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.button-cancel {
+  background-color: rgb(1, 35, 61);
+  color: white !important;
+  margin-bottom: 10px;
+  font-family: var(--font-primary);
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.button-delete {
+  background-color: rgb(234, 15, 33);
+  color: white !important;
+  margin-bottom: 10px;
+  font-family: var(--font-primary);
+  margin-left: 5px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center; // centra vertical
+  justify-content: center; // centra horizontal
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr; // mobile
+  gap: 16px;
+}
+
+@media (min-width: 992px) {
+  .form-row {
+    grid-template-columns: 60% 10% 27%;
+    align-items: center;
+  }
+}
+
+.tipo-1 {
+  color: #2e7d32;
+} // Ingreso
+.tipo-2 {
+  color: #c62828;
+} // Gasto
+.tipo-3 {
+  color: #1565c0;
+} // Ahorro
+.tipo-4 {
+  color: #ef6c00;
+} // Deuda
+
+
+ .monto-ingreso {
+  color: #2e7d32; // verde
+  font-weight: 600;
+}
+
+.monto-gasto {
+  color: #c62828; // rojo
+  font-weight: 600;
+}
+
+/* --- PANTALLAS PEQUEÑAS (CELULAR) --- */
+@media (max-width: 767px) {
+  .tabla-finanzas {
+    table-layout: fixed; /* clave para que el contenido respete la celda */
+    width: 100%;
+  }
+
+  .tabla-finanzas td,
+  .tabla-finanzas th {
+    padding: 5px;
+    font-size: 13px;
+  }
+
+  .tabla-finanzas td > div {
+    display: block;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* Pantallas muy pequeñas */
+@media (max-width: 344px) {
+  .tabla-finanzas td,
+  .tabla-finanzas th {
+    padding: 2px;
+    font-size: 12px !important;
+  }
+
+  .tabla-finanzas td > div {
+    font-size: 12px;
+  }
+}
