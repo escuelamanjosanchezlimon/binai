@@ -1,5 +1,10 @@
 # Frontend
 
+### Futuras mejoras
+
+- Permitir la visibilidad de la barra de navegación inferior solo cuando esté logueado y que no se vea cuando este activo la barra y la sesión cerrada.
+- Mejorar la velocidad a la hora de abrir la aplicación web con el service worker en el celular.
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.2.
 
 ## Development server
